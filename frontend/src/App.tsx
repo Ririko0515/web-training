@@ -4,6 +4,7 @@ type Message = {
   id: number;
   message: string;
   userName: string;
+  thread: string;
   createdAt: string;
 };
 
@@ -67,7 +68,7 @@ export default function App() {
 
   return (
     <main style={{ maxWidth: 640, margin: "2rem auto", padding: "0 1rem" }}>
-      <h1>Web Training 2026</h1>
+      <h1>匿名掲示板</h1>
 
       <section
         style={{
@@ -95,11 +96,32 @@ export default function App() {
       </section>
 
       <section>
-        <h2>掲示板</h2>
-
+        <h2>スレッド一覧</h2>
+        <div id="thread-list">
+          {error === "404" ? ( //new
+            <p style={{ color: "#888" }}>まだサポートされていません</p>
+          ) : (
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {messages.length === 0 ? (
+                <li style={{ color: "#888" }}>まだメッセージはありません</li>
+              ) : (
+                messages.map((m, index) => (
+                  <a
+                    href={`/threads/${m.thread}`}
+                    style={{ margin: "0.5rem 0 0", whiteSpace: "pre-wrap" }}
+                    key={`threadlink-${index}`}
+                  >
+                    {m.thread}
+                  </a>
+                ))
+              )}
+            </ul>
+          )}
+        </div>
         <form
           onSubmit={submit}
           style={{
+            padding: "20px 0 0 0",
             display: "flex",
             flexDirection: "column",
             gap: "0.5rem",
@@ -128,7 +150,6 @@ export default function App() {
             投稿
           </button>
         </form>
-
         {error === "404" ? (
           <p style={{ color: "#888" }}>まだサポートされていません</p>
         ) : (
