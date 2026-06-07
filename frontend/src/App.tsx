@@ -105,11 +105,11 @@ export default function App() {
               {messages.length === 0 ? (
                 <li style={{ color: "#888" }}>まだメッセージはありません</li>
               ) : (
-                messages.map((m, index) => (
+                messages.map((m) => (
                   <a
                     href={`/threads/${m.thread}`}
                     style={{ margin: "0.5rem 0 0", whiteSpace: "pre-wrap" }}
-                    key={`threadlink-${index}`}
+                    key={`threadlink-${m.id}`}
                   >
                     {m.thread}
                   </a>
