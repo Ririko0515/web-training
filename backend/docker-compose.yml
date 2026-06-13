@@ -41,6 +41,8 @@ services:
       PORT: ${PORT}
 
     # ここに追記
+    ports:
+      - "3000:3000"
 
     volumes:
       - ./src:/app/src
