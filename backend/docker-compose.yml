@@ -41,6 +41,7 @@ services:
       PORT: ${PORT}
 
     # ここに追記
+    platform: linux/amd64
     ports:
       - "3000:3000"
 
